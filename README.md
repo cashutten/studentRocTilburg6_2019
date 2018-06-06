@@ -51,5 +51,5 @@ Zoals vermeld is het project nog niet af, in de issues van dit project staan ver
 
 ### Wandelappbackend
 * De webapp maakt gebruik van een backend (wandelappbackend).
-* Om de checken of deze draait ga je naar http://nodejs-mongo-persistent-wandelappbackend-v4.a3c1.starter-us-west-1.openshiftapps.com/health (OPENSHIFT V3)
-* Informatie over de backend kun je opvragen via http://nodejs-mongo-persistent-wandelappbackend-v4.a3c1.starter-us-west-1.openshiftapps.com
+* Om de checken of deze draait ga je naar https://nodejs-mongo-persistent-wandelappbackend-v4.a3c1.starter-us-west-1.openshiftapps.com/health (OPENSHIFT V3)
+* Informatie over de backend kun je opvragen via https://nodejs-mongo-persistent-wandelappbackend-v4.a3c1.starter-us-west-1.openshiftapps.com/
