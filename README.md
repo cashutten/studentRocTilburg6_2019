@@ -18,7 +18,7 @@ Zoals vermeld is het project nog niet af, in de issues van dit project staan ver
 
 * Je gaat werken in een projectgroep van 3 tot 4 leden (door docent bepaald).
 * Maak als <u>projectgroep</u> je eigen Github account aan (dus niet als individuele gebruiker).
-* 'Fork' wandelapp_issues naar jullie nieuwe account (forking is kopieren).
+* 'Fork' wandelapp_jaartal naar jullie nieuwe account (forking is kopieren).
 * Importeer de issues m.b.v. https://gavinr.com/2016/07/04/github-csv-import/
 * Ieder lid van de projectgroep maakt in bv. Webstorm een lokale gitkopie (clone).
 * Vergeet niet een npm install te doen (waarom?)
@@ -51,5 +51,5 @@ Zoals vermeld is het project nog niet af, in de issues van dit project staan ver
 
 ### Wandelappbackend
 * De webapp maakt gebruik van een backend (wandelappbackend).
-* Om de checken of deze draait ga je naar https://nodejs-mongo-persistent-wandelappbackend-v4.a3c1.starter-us-west-1.openshiftapps.com/health (OPENSHIFT V3)
-* Informatie over de backend kun je opvragen via https://nodejs-mongo-persistent-wandelappbackend-v4.a3c1.starter-us-west-1.openshiftapps.com/
+* Om de checken of deze draait ga je naar https://wandelappbackend-v5.herokuapp.com/health (Heroku)
+* Informatie over de backend kun je opvragen via https://wandelappbackend-v5.herokuapp.com/
