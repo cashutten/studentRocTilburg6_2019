@@ -19,19 +19,17 @@ Zoals vermeld is het project nog niet af, in de issues van dit project staan ver
 * Je gaat werken in een projectgroep van 3 tot 4 leden (door docent bepaald).
 * Maak als <u>projectgroep</u> je eigen Github account aan (dus niet als individuele gebruiker).
 * 'Fork' wandelapp_jaartal naar jullie nieuwe account (forking is kopieren).
-* Importeer de issues m.b.v. https://gavinr.com/2016/07/04/github-csv-import/
 * Ieder lid van de projectgroep maakt in bv. Webstorm een lokale gitkopie (clone).
 * Vergeet niet een npm install te doen (waarom?)
 * Je werkt aan dit project volgens de scrum-methode. Bepaal de rollen:
   - scrummaster
   - product owner
   - developers
-* Maak in Trello een scrumboard met een backlog van de openstaande issues.
+* Maak een nieuw project in Github onder de tab 'Projects'. Een scrumboard met een backlog van de openstaande issues.
 * De productowner bepaalt de prioriteit van de backlogitems.
 * Werk een aantal backlogitems uit zodat je kunt pokeren.
 * Bepaal welke onderdelen je in de volgende sprint gaat maken. Een sprint mag maximaal 3 weken duren (9 uur per week). In totaal heb je 6 weken, dus twee sprints die ieder worden afgesloten met een demo.
 * Let op: niet ALLE issues hoeven per se opgelost te worden in deze zes weken! Het gaat om kwaliteit en niet om kwantiteit.
-* <u>Vraag aan de docent of de gekozen items voor de sprint akkoord zijn.</u>
 * Start de ontwikkeling aan de hand van het scrumboard.
 * Werk met branches tijdens de ontwikkeling! Bekijk: https://www.youtube.com/watch?v=SBuxRiPk2Zg en kies een strategie.
 * <u>Als tijdens de ontwikkeling tegen problemen aanloopt of extra instructie nodig hebt, ga naar de docent.</u>.
