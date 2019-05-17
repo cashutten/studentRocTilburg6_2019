@@ -64,6 +64,13 @@ const posttextfile = (remoteserver = "", file = "") => {
     });
 };
 
+const getcuid = (remoteserver) => {
+    return fetch(remoteserver)
+        .then(response => response.json())
+        .catch(err => console.error("Error: ", err));
+};
+
 //expose ajax functions
 exports.getroutesjson = getroutesjson;
 exports.posttextfile = posttextfile;
+exports.getcuid = getcuid;
