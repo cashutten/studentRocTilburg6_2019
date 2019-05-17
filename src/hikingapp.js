@@ -55,51 +55,50 @@ const hikingapp = (remoteserver) => {
 
     //Events
     ractive_ui.on({
-            'collapse': (event, filename, routeobj) => {
-                console.log("yes yes yes");
-                //Toggle description
-                $(".item").toggle(false);
-                $("#route" + filename).toggle(true);
-                //Show chosen route on map
-                map.showroute(routeobj.data.json);
-            },
-            'uploadgpx': (event) => {
-                const file = event.original.target.files[0];
-                if (file) {
-                    //Post route (gpx text file) async
-                    posttextfile(remoteserver + '/upload?cuid=' + cuid, file)
-                        .then(
-                            () => {
-                                //Retreive the latest routes async
-                                getroutesjson(remoteserver + '/routes?cuid=' + cuid)
-                                    .then(
-                                        (routesjson) => {
-                                            //Show success
-                                            $("#info").html("Route is toegevoegd");
-                                            ractive_ui.set("hikes", routesjson);
-                                            //Show chosen route
-                                            map.showroute(routesjson[0].data.json);
-                                        },
-                                        (reason) => {
-                                            //error
-                                            $("#info").html(reason);
-                                        }
-                                    )
-                                    .catch(
-                                        (reason) => {
-                                            //error
-                                            $("#info").html(reason);
-                                        }
-                                    )
-                                ;
-                            }
-                        )
-                        .catch(
-                            (e) => {
-                                $("#info").html(e);
-                            }
-                        )
-                    ;
+        'collapse': (event, filename, routeobj) => {
+            console.log("yes yes yes");
+            //Toggle description
+            $(".item").toggle(false);
+            $("#route" + filename).toggle(true);
+            //Show chosen route on map
+            map.showroute(routeobj.data.json);
+        },
+        'uploadgpx': (event) => {
+            const file = event.original.target.files[0];
+            if (file) {
+                //Post route (gpx text file) async
+                posttextfile(remoteserver + '/upload?cuid=' + cuid, file)
+                    .then(
+                        () => {
+                            //Retreive the latest routes async
+                            getroutesjson(remoteserver + '/routes?cuid=' + cuid)
+                                .then(
+                                    (routesjson) => {
+                                        //Show success
+                                        $("#info").html("Route is toegevoegd");
+                                        ractive_ui.set("hikes", routesjson);
+                                        //Show chosen route
+                                        map.showroute(routesjson[0].data.json);
+                                    },
+                                    (reason) => {
+                                        //error
+                                        $("#info").html(reason);
+                                    }
+                                )
+                                .catch(
+                                    (reason) => {
+                                        //error
+                                        $("#info").html(reason);
+                                    }
+                                )
+                            ;
+                        }
+                    )
+                    .catch(
+                        (e) => {
+                            $("#info").html(e);
+                        }
+                    );
                 }
             }
         }
