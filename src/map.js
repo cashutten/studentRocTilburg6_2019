@@ -1,14 +1,20 @@
+// Run nodejs with npm i -g http-server && http-server
 import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
     constructor(){
         mapboxgl.accessToken = '[API KEY HERE]';
-        return new mapboxgl.Map({
+        let mapTemp = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
             center: [4.895168, 52.370216], // starting position
-            zoom: 9 // starting zoom
+            zoom: 9, // starting zoom
+            scrollZoom: false,
+            showZoom: true
         });
+        mapTemp.addControl(new mapboxgl.NavigationControl());
+
+        return mapTemp;
     }
 }
 
@@ -21,7 +27,6 @@ export default class Map {
         this.youarehere = null;
         this.el = document.createElement('div');
         this.el.className = 'marker';
-
 
         this.map.on('click', function (e) {
             const features = this.map.queryRenderedFeatures(e.point, { layers: ['poi'] });
@@ -41,7 +46,7 @@ export default class Map {
                 .addTo(this.map);
         }.bind(this));
     }
-
+    
     //Center map around coordinates
     center(lnglat){
         if (!lnglat) {
