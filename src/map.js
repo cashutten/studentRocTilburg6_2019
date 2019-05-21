@@ -3,16 +3,16 @@ import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
     constructor(){
-        mapboxgl.accessToken = '[API KEY]';
+        mapboxgl.accessToken = '[API KEY HERE]';
         let mapTemp = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
             center: [4.895168, 52.370216], // starting position
             zoom: 9, // starting zoom
-            scrollZoom: false
+            scrollZoom: false,
+            showZoom: true
         });
-        
-        // mapTemp.addControl(new mapboxgl.NavigationControl());
+        mapTemp.addControl(new mapboxgl.NavigationControl());
 
         return mapTemp;
     }
