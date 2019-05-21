@@ -15,11 +15,6 @@ const hikingapp = (remoteserver) => {
     });
     let map = null;
 
-    // todo: Get cuid from localstorage if there is one. Otherwise ask backend (wandelappbackend_issues_v2) for new cuid:
-    // todo: therefor implement getcuid function in routes.js module!
-    // cuid is needed to get only the routes that belong to this cuid.
-    // const cuid = 'test'; //todo: Temporarily use a dummy cuid (with the result that all app users see all routes!)
-
     let cuid = localStorage.getItem("cuid");
 
     if (!cuid) {
@@ -30,8 +25,6 @@ const hikingapp = (remoteserver) => {
             })
             .catch(err => console.error("Error: ", err));
     }
-
-    console.log(cuid);
 
     //Wait until Ractive is ready
     ractive_ui.on('complete', () => {
@@ -69,7 +62,7 @@ const hikingapp = (remoteserver) => {
     //Events
     ractive_ui.on({
         'collapse': (event, filename, routeobj) => {
-            console.log("yes yes yes");
+            // console.log("yes yes yes");
             //Toggle description
             $(".item").toggle(false);
             $("#route" + filename).toggle(true);
@@ -77,34 +70,31 @@ const hikingapp = (remoteserver) => {
             map.showroute(routeobj.data.json);
         },
         'uploadgpx': (event) => {
+            const allRoutes = ractive_ui.get("hikes");
+            console.log(allRoutes);
             const file = event.original.target.files[0];
             if (file) {
                 //Post route (gpx text file) async
-                posttextfile(remoteserver + '/upload?cuid=' + cuid, file)
-                    .then(
-                        () => {
-                            //Retreive the latest routes async
-                            getroutesjson(remoteserver + '/routes?cuid=' + cuid)
-                                .then(
-                                    (routesjson) => {
-                                        //Show success
-                                        $("#info").html("Route is toegevoegd");
-                                        ractive_ui.set("hikes", routesjson);
-                                        //Show chosen route
-                                        map.showroute(routesjson[0].data.json);
-                                    },
-                                    (reason) => {
-                                        //error
-                                        $("#info").html(reason);
-                                    }
-                                )
-                                .catch(
-                                    (reason) => {
-                                        //error
-                                        $("#info").html(reason);
-                                    }
-                                )
-                            ;
+                posttextfile(remoteserver + '/upload?cuid=' + cuid, file, allRoutes)
+                    .then(() => {
+                        //Retreive the latest routes async
+                        getroutesjson(remoteserver + '/routes?cuid=' + cuid)
+                            .then(
+                                (routesjson) => {
+                                    console.log(routesjson);
+                                    //Show success
+                                    $("#info").html("Route is toegevoegd");
+                                    ractive_ui.set("hikes", routesjson);
+                                    //Show chosen route
+                                    map.showroute(routesjson[0].data.json);
+                                }
+                            )
+                            .catch(
+                                (reason) => {
+                                    //error
+                                    $("#info").html(reason);
+                                }
+                            );
                         }
                     )
                     .catch(

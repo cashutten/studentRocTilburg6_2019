@@ -2,7 +2,7 @@ import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
     constructor(){
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FzaHV0dGVuIiwiYSI6ImNqdWRhemN0ZjB1ZXg0NXBjOG5mcTc2OGkifQ.tdHkNO2mu57Qz8-smSD6Ng';
+        mapboxgl.accessToken = '[API KEY HERE]';
         return new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
@@ -30,7 +30,7 @@ export default class Map {
             }
 
             const feature = features[0];
-            console.log(feature);
+            // console.log(feature);
 
             const name = (feature.properties.name === undefined) ? '' : feature.properties.name;
             const desc = (feature.properties.desc === undefined) ? '' : feature.properties.desc;
@@ -47,7 +47,7 @@ export default class Map {
         if (!lnglat) {
             return;
         }
-        console.log(lnglat);
+        // console.log(lnglat);
         this.map.setCenter(lnglat);
         this.map.setZoom(this.defaultzoomlevel);
     }

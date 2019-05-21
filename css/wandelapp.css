@@ -43,7 +43,7 @@ body {
      display: block;
      cursor: pointer;
      background-image: url(../img/marker.svg); /* should be 20px by 20px, important for offset!! */
-     background-size: contain;
+     background-size: cover;
      width:20px;
      height:20px;
  }
