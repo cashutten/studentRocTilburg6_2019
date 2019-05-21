@@ -30,7 +30,7 @@ export default class Map {
             }
 
             const feature = features[0];
-            console.log(feature);
+            // console.log(feature);
 
             const name = (feature.properties.name === undefined) ? '' : feature.properties.name;
             const desc = (feature.properties.desc === undefined) ? '' : feature.properties.desc;
@@ -47,7 +47,7 @@ export default class Map {
         if (!lnglat) {
             return;
         }
-        console.log(lnglat);
+        // console.log(lnglat);
         this.map.setCenter(lnglat);
         this.map.setZoom(this.defaultzoomlevel);
     }
