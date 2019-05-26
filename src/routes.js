@@ -6,23 +6,22 @@ import * as $ from 'jquery';
  * @param remoteserver
  * @returns {Array}
  */
-const checkDuplicate = (allRoutes, remoteserver = "") => {
+const checkDuplicate = (allRoutes, f, remoteserver = "") => {
     // "Amelisweerd (OV Stapper)"
     // console.log(allRoutes);
     // console.log(route);
     let found = [];
     // console.log(allRoutes);
 
-
     function isRoute(current) {
-        return route === current;
+        return current[0] === current[1];
     }
 
     for (let i = 0; i < allRoutes.length; i++) {
         let current = allRoutes[i].json.features[0].geometry;
         console.log("current:", current);
 
-        console.log(allRoutes.find(isRoute(current)));
+        console.log(allRoutes.find(isRoute([found, current])));
     }
 
     // for (let i = 0; i < allRoutes.length; i++) {
@@ -52,7 +51,7 @@ const getroutesjson = (remoteserver) => {
             dataType: "json"
         })
         .done((data) => {
-            data = checkDuplicate(data);
+            // data = checkDuplicate(data);
             routesjson = data.map((f) => {
                 return {data: f};
             });
@@ -85,7 +84,8 @@ const posttextfile = (remoteserver = "", file = "", allRoutes = "") => {
                     if (xhr.status === 200) {
                         const res = JSON.parse(xhr.response);
                         console.log(res);
-                        if(res.error === true || checkDuplicate(allRoutes, res)){
+                        // if(res.error === true || checkDuplicate(allRoutes, res)){
+                        if(res.error === true){
                             reject(res.msg);
                         } else {
                             resolve();

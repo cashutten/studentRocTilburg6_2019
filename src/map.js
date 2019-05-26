@@ -3,8 +3,8 @@ import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
     constructor(){
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FzaHV0dGVuIiwiYSI6ImNqdzVncGF1ZDEyYWE0NHFyd2t4Mmt1cGUifQ.-wtC3MgcBEF1qwVKF0LqUw';
-        return new mapboxgl.Map({
+        mapboxgl.accessToken = '<DONT UPLOAD API';
+        let mapTemp = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
             center: [4.895168, 52.370216], // starting position
@@ -13,6 +13,7 @@ class Mapboxgl {
             showZoom: true
         });
         mapTemp.addControl(new mapboxgl.NavigationControl());
+        mapTemp.scrollZoom.disable();
 
         return mapTemp;
     }

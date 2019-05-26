@@ -31,7 +31,6 @@
                 </div>
                 {{#each hikes}}
                     <h1 on-click="['collapse', data._id, this]">{{data.json.features.0.properties.name}}</h1>
-                    <p>Wandeling</p>
                     <div class="item" id="route{{data._id}}">
                         <h2 on-click="['collapse', none, this]">{{data.json.features.0.properties.name}}</h2>
                         <p>Wandeling</p>

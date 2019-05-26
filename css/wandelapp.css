@@ -87,14 +87,17 @@ hr {
     max-width: calc(90% - 8vh);
 }
 #routes > div {
-    width: 100%; max-height: 40vh;
+    width: 100%; max-height: 25vh;
     box-shadow: 0 -2vw 2vw #CACACA;
     overflow-y: scroll;
     display: none;
     margin-bottom: 2.5%;
     background-color: #EAEAEA;
     position: absolute;
-    left: 0; bottom: calc(25vh - 3vw);
+    left: 0; bottom: calc(30vh - 3vw);
+}
+#routes > div.item {
+    padding: 10px 0;
 }
 #routes > div h2 {
     color: #DC5D5D;
@@ -183,3 +186,7 @@ hr {
 .mapboxgl-ctrl-attrib {
     display: none !important;
 }
+.mapboxgl-ctrl-top-right {
+    top: 15vh;
+}
+/* ---------- */
