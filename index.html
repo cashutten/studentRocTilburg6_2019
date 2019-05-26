@@ -3,7 +3,8 @@
 <head>
     <meta charset=utf-8 />
     <title>Wandelapp</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name='viewport' content='initial-scale=1, maximum-scale=1, user-scalable=no'>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
 
@@ -11,26 +12,44 @@
 
     <!-- Ractive template -->
     <script id='template' type='text/ractive'>
-
-        <!-- Mapbox -->
+        <!-- Map -->
         <div id='map'></div>
 
+        <!-- Upload button -->
+        <div id="uploadbutton">
+            <img id="uploadicon" src="img/uploadicon.svg" alt="upload">
+            <label for="file-input">Upload een nieuwe GPX route</label>
+            <input on-change="uploadgpx" type="file" id="file-input" data-buttonText="Upload een nieuw">
+        </div>
+
         <!-- Routes list -->
-        <div id="accordion">
-            {{#each hikes}}
-                <h1 on-click="['collapse', data._id, this]">wandeling {{data.json.features.0.properties.name}}</h1>
-                <div class="item" id="route{{data._id}}">
-                    {{data.json.features.0.properties.desc}}
+
+        <div id="routescontainer">
+            <div id="routes">
+                <div id="centerbutton">
+                    <img id="makericon" src="img/markericon.svg" alt="marker">
                 </div>
-            {{/each}}
+                {{#each hikes}}
+                    <h1 on-click="['collapse', data._id, this]">{{data.json.features.0.properties.name}}</h1>
+                    <p>Wandeling</p>
+                    <div class="item" id="route{{data._id}}">
+                        <h2 on-click="['collapse', none, this]">{{data.json.features.0.properties.name}}</h2>
+                        <p>Wandeling</p>
+                        <hr>
+                        <p>{{data.json.features.0.properties.desc}}</p>
+                    </div>
+                {{/each}}
+            </div>
         </div>
-
-        <!-- Info & upload -->
-        <div id="upload">
-            <input on-change="uploadgpx" type="file" id="file-input" />
-            <div id="info"></div>
+        <hr>
+        <!-- Info list -->
+        <div id="infolist">
+            <div id="sattelite">
+                <div></div>
+                <p>Show satellite</p>
+            </div>
+            <div id="infobutton">i</div>
         </div>
-
     </script>
 
     <!-- Ractive div/template -->
