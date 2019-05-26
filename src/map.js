@@ -1,3 +1,4 @@
+// Run nodejs with npm i -g http-server && http-server
 import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
@@ -7,8 +8,13 @@ class Mapboxgl {
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
             center: [4.895168, 52.370216], // starting position
-            zoom: 9 // starting zoom
+            zoom: 9, // starting zoom
+            scrollZoom: false,
+            showZoom: true
         });
+        mapTemp.addControl(new mapboxgl.NavigationControl());
+
+        return mapTemp;
     }
 }
 
@@ -22,7 +28,6 @@ export default class Map {
         this.el = document.createElement('div');
         this.el.className = 'marker';
 
-
         this.map.on('click', function (e) {
             const features = this.map.queryRenderedFeatures(e.point, { layers: ['poi'] });
             if (!features.length) {
@@ -30,7 +35,7 @@ export default class Map {
             }
 
             const feature = features[0];
-            console.log(feature);
+            // console.log(feature);
 
             const name = (feature.properties.name === undefined) ? '' : feature.properties.name;
             const desc = (feature.properties.desc === undefined) ? '' : feature.properties.desc;
@@ -41,13 +46,13 @@ export default class Map {
                 .addTo(this.map);
         }.bind(this));
     }
-
+    
     //Center map around coordinates
     center(lnglat){
         if (!lnglat) {
             return;
         }
-        console.log(lnglat);
+        // console.log(lnglat);
         this.map.setCenter(lnglat);
         this.map.setZoom(this.defaultzoomlevel);
     }
@@ -72,9 +77,9 @@ export default class Map {
         /////
         // POI (points of interest)
         // https://www.mapbox.com/mapbox-gl-js/example/geojson-markers/
-        const poi_filter = geo_json.features.filter((feature)=>{
+        const poi_filter = geo_json.features.filter((feature) => {
             //If feature.geometry.type isn't Point, delete this feature
-            return feature.geometry.type==="Point";
+            return feature.geometry.type === "Point";
         });
         const poi = {
             "type": "geojson",
