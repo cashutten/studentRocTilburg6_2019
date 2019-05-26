@@ -6,24 +6,35 @@ import * as $ from 'jquery';
  * @param remoteserver
  * @returns {Array}
  */
-const checkDuplicate = (allRoutes, route, remoteserver = "") => {
+const checkDuplicate = (allRoutes, remoteserver = "") => {
     // "Amelisweerd (OV Stapper)"
     // console.log(allRoutes);
     // console.log(route);
-    let found = [],
-        counter = 0;
+    let found = [];
     // console.log(allRoutes);
-    for (let i = 0; i < allRoutes.length; i++) {
-        console.log(allRoutes[i]);
-        if (found.includes(JSON.stringify(route.json.features[0].geometry.coordinates))) {
-            // console.log("dupe");
-            return true;
-        } else {
-            found.push(JSON.stringify(allRoutes[i].data.json.features[0].geometry.coordinates));
-            // console.log("no dupe");
-            counter++;
-        }
+
+
+    function isRoute(current) {
+        return route === current;
     }
+
+    for (let i = 0; i < allRoutes.length; i++) {
+        let current = allRoutes[i].json.features[0].geometry;
+        console.log("current:", current);
+
+        console.log(allRoutes.find(isRoute(current)));
+    }
+
+    // for (let i = 0; i < allRoutes.length; i++) {
+    //     let current = allRoutes[i].json.features[0].geometry;
+    //     console.log("current", current);
+    //     if (!found.find(function(current) {
+    //         iroute.json.features[0].geometry === current;
+    //     })) {
+    //         found.push(allRoutes[i]);
+    //         console.log("No duplicate: ", allRoutes[i]);
+    //     }
+    // }
     return found;
 };
 
@@ -41,10 +52,13 @@ const getroutesjson = (remoteserver) => {
             dataType: "json"
         })
         .done((data) => {
+            data = checkDuplicate(data);
             routesjson = data.map((f) => {
                 return {data: f};
             });
             // console.log(routesjson);
+            console.log("data: ", data);
+            console.log("routesjson: ", routesjson);
             resolve(routesjson);
         })
         .fail((err) => reject(err));

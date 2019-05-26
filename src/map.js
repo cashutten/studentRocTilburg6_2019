@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
     constructor(){
-        mapboxgl.accessToken = '[API KEY HERE]';
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FzaHV0dGVuIiwiYSI6ImNqdnhucHE2YzA2ZWg0OXBpZGU4bWFobHIifQ.uuM2tHq6gTCwzRzVb7qG_g';
         let mapTemp = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
@@ -77,9 +77,9 @@ export default class Map {
         /////
         // POI (points of interest)
         // https://www.mapbox.com/mapbox-gl-js/example/geojson-markers/
-        const poi_filter = geo_json.features.filter((feature)=>{
+        const poi_filter = geo_json.features.filter((feature) => {
             //If feature.geometry.type isn't Point, delete this feature
-            return feature.geometry.type==="Point";
+            return feature.geometry.type === "Point";
         });
         const poi = {
             "type": "geojson",
