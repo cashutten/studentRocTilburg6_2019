@@ -2,8 +2,8 @@
 import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
-    constructor(){
-        mapboxgl.accessToken = '<DONT UPLOAD API';
+    constructor() {
+        mapboxgl.accessToken = '<DONT UPLOAD API>';
         let mapTemp = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
@@ -20,7 +20,6 @@ class Mapboxgl {
 }
 
 export default class Map {
-
     //Init
     constructor() {
         this.map = new Mapboxgl();
