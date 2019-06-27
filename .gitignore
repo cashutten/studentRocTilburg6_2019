@@ -3,3 +3,5 @@ src/.DS_Store
 node_modules
 js/
 .idea
+.DS_Store
+~inhoud.pdf
