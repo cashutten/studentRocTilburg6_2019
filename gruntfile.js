@@ -54,6 +54,18 @@ module.exports = function(grunt) {
                 }
             }
         },
+        uglify: {
+            options: {
+                mangle: {
+                    reserved: ['jQuery', 'Ractive']
+                }
+            },
+            my_target: {
+                files: {
+                    "./js/app.min.js": ["./js/app_es5.js"]
+                }
+            }
+        },
         exec: {
             log: 'echo "Ga naar localhost:2222 om de unit test uit te voeren"',
             runtest: 'browserify -t babelify tests/*.js | browser-run -p 2222',
@@ -61,7 +73,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['*.js', 'src/*.js'],
-                tasks: ['jshint', 'browserify']
+                tasks: ['jshint', 'browserify', 'uglify']
             }
         }
     });
@@ -71,10 +83,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-exec');
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'copy', 'browserify']);
+    grunt.registerTask('default', ['jshint', 'copy', 'browserify', 'uglify']);
     grunt.registerTask('test', ['exec']);
 
 };

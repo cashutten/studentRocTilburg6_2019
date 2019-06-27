@@ -14,6 +14,7 @@ const hikingapp = (remoteserver) => {
         debug: true
     });
     let map = null;
+    let satellite = false;
 
     let cuid = localStorage.getItem("cuid");
 
@@ -34,7 +35,7 @@ const hikingapp = (remoteserver) => {
         const geo_options = {
             enableHighAccuracy: true,
             maximumAge: 1000,
-            timeout: 10000
+            timeout: 3000
         };
 
         //Get routes from server and show these as choices
@@ -102,6 +103,20 @@ const hikingapp = (remoteserver) => {
                             $("#info").html(e);
                         }
                     );
+            }
+        },
+        'center': () => {
+            navigator.geolocation.clearWatch(1);
+            navigator.geolocation.getCurrentPosition(map.geo_success.bind(map));
+            return;
+        },
+        'satellite': () => {
+            if (satellite) {
+                satellite = false;
+                map.map.setStyle("mapbox://styles/mapbox/streets-v8");
+            } else {
+                satellite = true;
+                map.map.setStyle("mapbox://styles/mapbox/satellite-v9");
             }
         }
     });

@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
     constructor() {
-        mapboxgl.accessToken = '<DONT UPLOAD API>';
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FzaHV0dGVuIiwiYSI6ImNqdzVncGF1ZDEyYWE0NHFyd2t4Mmt1cGUifQ.-wtC3MgcBEF1qwVKF0LqUw';
         let mapTemp = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
@@ -52,7 +52,7 @@ export default class Map {
         if (!lnglat) {
             return;
         }
-        // console.log(lnglat);
+        console.log(lnglat);
         this.map.setCenter(lnglat);
         this.map.setZoom(this.defaultzoomlevel);
     }
@@ -147,6 +147,10 @@ export default class Map {
             .setLngLat(location)
             .addTo(this.map);
         this.center(location);
+    }
+
+    satellite() {
+        this.map.setStyle("mapbox://styles/mapbox/satellite-v9");
     }
 
 }

@@ -5,11 +5,21 @@
     <title>Wandelapp</title>
     <meta name='viewport' content='initial-scale=1, maximum-scale=1, user-scalable=no'>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+    <link rel="manifest" href="/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
 
     <!-- should be run on localhost -->
-
     <!-- Ractive template -->
     <script id='template' type='text/ractive'>
         <!-- Map -->
@@ -26,7 +36,7 @@
 
         <div id="routescontainer">
             <div id="routes">
-                <div id="centerbutton">
+                <div id="centerbutton" on-click="['center']">
                     <img id="makericon" src="img/markericon.svg" alt="marker">
                 </div>
                 {{#each hikes}}
@@ -43,7 +53,7 @@
         <hr>
         <!-- Info list -->
         <div id="infolist">
-            <div id="sattelite">
+            <div id="sattelite" on-click="['satellite']">
                 <div></div>
                 <p>Show satellite</p>
             </div>
@@ -56,6 +66,15 @@
 
     <link rel="stylesheet" type="text/css" href="css/cssreset.css" />
     <link rel="stylesheet" type="text/css" href="css/wandelapp.css" />
+    <script>
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker
+                   .register('/sw.js')
+                   .then(function() { console.log("Service Worker Registered"); });
+        }
+    </script>
+
     <script src='js/app_es5.js'></script>
+    
 </body>
 </html>
